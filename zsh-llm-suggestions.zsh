@@ -62,7 +62,7 @@ zsh_llm_completion() {
   
   if [[ "$mode" == "generate" ]]; then
     # Place the query in the history first
-    print -s $query
+    # print -s $query
     # Replace the current buffer with the result
     ZSH_LLM_SUGGESTIONS_LAST_RESULT=$(cat $result_file)
     BUFFER="${ZSH_LLM_SUGGESTIONS_LAST_RESULT}"
