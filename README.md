@@ -20,7 +20,12 @@ to explain the command.
 Clone the repository:
 
 ```
-git clone https://github.com/laszlovandenhoek/zsh-llm-suggestions.git ~/.oh-my-zsh/plugins/zsh-llm-suggestions
+git clone https://github.com/laszlovandenhoek/zsh-llm-suggestions.git ~/.oh-my-zsh/custom/plugins/zsh-llm-suggestions
+```
+
+Enable the plugin in `.zshrc` (add it to the list if you already have any):
+```
+plugins=(zsh-llm-suggestions)
 ```
 
 Configure the hotkey in `.zshrc`:
