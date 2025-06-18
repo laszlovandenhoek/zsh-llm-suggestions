@@ -1,4 +1,6 @@
-# LLM-based command suggestions for zsh
+A fork of https://github.com/stefanheule/zsh-llm-suggestions, specifically for [oh-my-zsh](http://github.com/ohmyzsh/ohmyzsh). Adds support for multiple models by wrapping [llm](https://github.com/simonw/llm).
+
+# LLM-based command suggestions for oh-my-zsh
 
 ![Demo of zsh-llm-suggestions](https://github.com/stefanheule/zsh-llm-suggestions/blob/master/zsh-llm-suggestions.gif?raw=true)
 
@@ -18,53 +20,17 @@ to explain the command.
 Clone the repository:
 
 ```
-git clone https://github.com/stefanheule/zsh-llm-suggestions.git ~/zsh/zsh-llm-suggestions
+git clone https://github.com/laszlovandenhoek/zsh-llm-suggestions.git ~/.oh-my-zsh/plugins/zsh-llm-suggestions
 ```
 
-Source the script and configure the hotkey in `.zshrc`:
+Configure the hotkey in `.zshrc`:
 
 ```
-source ~/zsh/zsh-llm-suggestions/zsh-llm-suggestions.zsh
-bindkey '^o' zsh_llm_suggestions_openai # Ctrl + O to have OpenAI suggest a command given a English description
-bindkey '^[^o' zsh_llm_suggestions_openai_explain # Ctrl + alt + O to have OpenAI explain a command
-bindkey '^p' zsh_llm_suggestions_github_copilot # Ctrl + P to have GitHub Copilot suggest a command given a English description
-bindkey '^[^p' zsh_llm_suggestions_github_copilot_explain # Ctrl + alt + P to have GitHub Copilot explain a command
+bindkey '^o' zsh_llm_suggestions_llm # Ctrl + O to have llm suggest a command given a English description
+bindkey '^p' zsh_llm_suggestions_llm_explain # Ctrl + P to have llm explain a command
 ```
 
-Make sure `python3` is installed.
-
-Both LLMs require a bit of configuration. Either follow the rest of the instructions
-here, or just enter something on the prompt (because an empty prompt won't run the
-LLM) and hit your configured keyboard shortcut. Instead of answering the prompt, it will
-tell you how to finish the setup.
-
-For `zsh_llm_suggestions_openai` (OpenAI-based suggestions):
-- Set the `OPENAI_API_KEY` environment variable to your API key. You can get it
-  from [https://platform.openai.com/api-keys](platform.openai.com/api-keys). Note
-  that every suggestion costs a small amount of money, you are solely responsible for
-  these charges.
-  ```
-  export OPENAI_API_KEY="..."
-  ```
-- Install the Python 3 package `openai`:
-  ```
-  pip3 install openai
-  ```
-- Optional, if you want syntax highlighting for the command explanation, install pygments
-  ```
-  pip3 install pygments
-  ```
-
-For `zsh_llm_suggestions_github_copilot` (GitHub Copilot suggestions):
-- Install GitHub CLI: Follow [https://github.com/cli/cli#installation](github.com/cli/cli#installation).
-- Authenticate with GitHub:
-  ```
-  /usr/bin/gh auth login --web -h github.com
-  ```
-- Install GitHub Copilot extension:
-  ```
-  /usr/bin/gh extension install github/gh-copilot
-  ```
+Set up the `llm` tool according to its instructions at https://github.com/simonw/llm
 
 ## Usage
 
@@ -90,8 +56,3 @@ There are some risks using `zsh-llm-suggestions`:
    are okay executing the commands.
 2. The supported LLMs are not free, so you might incur a cost when using `zsh-llm-suggestions`.
 
-## Supported LLMs
-
-Right now, two LLMs are supported:
-1. GitHub Copilot (via GitHub CLI). Requires a GitHub Copilot subscription.
-2. OpenAI. Requires an OpenAI API key. Currently uses `gpt-4-1106-preview`.
